@@ -17,9 +17,9 @@ static PyObject *dash_getpowhash(PyObject *self, PyObject *args)
     output = PyMem_Malloc(32);
 
 #if PY_MAJOR_VERSION >= 3
-    dash_hash((char *)PyBytes_AsString((PyObject*) input), (int)PyBytes_Size((PyObject*) input), output);
+    xcoin_hash((char *)PyBytes_AsString((PyObject*) input), (int)PyBytes_Size((PyObject*) input), output);
 #else
-    dash_hash((char *)PyString_AsString((PyObject*) input), (int)PyString_Size((PyObject*) input), output);
+    xcoin_hash((char *)PyString_AsString((PyObject*) input), (int)PyString_Size((PyObject*) input), output);
 #endif
     Py_DECREF(input);
 #if PY_MAJOR_VERSION >= 3
@@ -39,19 +39,19 @@ static PyMethodDef DashMethods[] = {
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef DashModule = {
     PyModuleDef_HEAD_INIT,
-    "dash_hash",
+    "xcoin_hash",
     "...",
     -1,
     DashMethods
 };
 
-PyMODINIT_FUNC PyInit_dash_hash(void) {
+PyMODINIT_FUNC PyInit_xcoin_hash(void) {
     return PyModule_Create(&DashModule);
 }
 
 #else
 
-PyMODINIT_FUNC initdash_hash(void) {
-    (void) Py_InitModule("dash_hash", DashMethods);
+PyMODINIT_FUNC initxcoin_hash(void) {
+    (void) Py_InitModule("xcoin_hash", DashMethods);
 }
 #endif
